@@ -12,6 +12,16 @@ user.get('/', async(req,res)=>{
     }
 })
 
+user.get("/:_id", async (req, res) => {
+    const id = req.params;
+    try {
+      const data = await QuizModel.find(id);
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(400).send({ msg: "data is not available for dashboard" });
+    }
+  });
+
 user.post('/', async(req,res)=>{
     const body = req.body;
     try {
